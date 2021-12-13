@@ -25,6 +25,32 @@ public class ReadingFiles {
 
         System.out.printf("File \"%s\" copied. %d", file.getName(), file.length());
 
+        PrintWriter pw = new PrintWriter(System.out);
+        pw.println("3 books recommendation: ");
+        pw.flush();
+
+        appendInfoToFile(fileCopy.getName());
+
+        br.close();
+        bw.close();
+        pw.close();
+
+    }
+
+    private static void appendInfoToFile(String fileName) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line = br.readLine();
+
+        BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true));
+
+        do {
+            bw.write(line);
+            bw.newLine();
+            line = br.readLine();
+        } while (!line.equalsIgnoreCase("end"));
+
+        br.close();
+        bw.close();
     }
 
     public static void main(String[] args) {
