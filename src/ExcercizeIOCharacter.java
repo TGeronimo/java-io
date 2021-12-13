@@ -17,7 +17,7 @@ public class ExcercizeIOCharacter {
             bw.write(line);
             bw.newLine();
             line = br.readLine();
-        } while (line.isBlank());
+        } while (!line.isBlank());
         bw.flush();
 
         br.close();
