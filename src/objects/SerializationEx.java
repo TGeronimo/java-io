@@ -3,6 +3,12 @@ package objects;
 import java.io.*;
 
 public class SerializationEx {
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+//        serialize();
+        desserialize("C:\\Users\\THIAGO.GERONIMO\\Documents\\Quality\\dev\\Java\\java-io\\cat");
+    }
+
     public static void serialize() throws IOException {
 
         Cat cat = new Cat("Brisa",2, "white");
@@ -19,12 +25,11 @@ public class SerializationEx {
 
     }
 
-    public static void desserialize(String file) {
+    public static void desserialize(String file) throws IOException, ClassNotFoundException {
+        ObjectInputStream inputStream = new ObjectInputStream(
+                new FileInputStream(file));
+        Cat cat = (Cat) inputStream.readObject();
 
-    }
-
-    public static void main(String[] args) throws IOException {
-        serialize();
-
+        System.out.printf("Object deserialized with %d bytes:\n%s\n", file.length(), cat.toString());
     }
 }
